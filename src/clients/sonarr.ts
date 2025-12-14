@@ -102,8 +102,8 @@ export class SonarrClient {
   /**
    * Delete a series
    */
-  async deleteSeries(id: number) {
-    return SonarrApi.deleteApiV3SeriesById({ path: { id } });
+  async deleteSeries(id: number, deleteFiles?: boolean) {
+    return SonarrApi.deleteApiV3SeriesById({ path: { id }, query: { deleteFiles } });
   }
 
   /**

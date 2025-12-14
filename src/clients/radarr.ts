@@ -89,8 +89,8 @@ export class RadarrClient {
     return RadarrApi.putApiV3MovieById({ path: { id: String(id) }, body: movie });
   }
 
-  async deleteMovie(id: number) {
-    return RadarrApi.deleteApiV3MovieById({ path: { id } });
+  async deleteMovie(id: number, deleteFiles?: boolean) {
+    return RadarrApi.deleteApiV3MovieById({ path: { id }, query: { deleteFiles } });
   }
 
   // Search APIs
