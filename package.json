@@ -1,10 +1,10 @@
 {
-  "name": "tsarr",
-  "version": "1.9.0",
+  "name": "@ilyamatsuev/tsarr",
+  "version": "1.9.1",
   "author": "Robbe Verhelst",
   "repository": {
     "type": "git",
-    "url": "https://github.com/robbeverhelst/tsarr.git"
+    "url": "https://github.com/IlyaMatsuev/Tsarr"
   },
   "main": "dist/index.js",
   "module": "dist/index.js",

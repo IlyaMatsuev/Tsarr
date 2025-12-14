@@ -1,4 +1,4 @@
-# <img src="./docs/logo.png" alt="Tsarr Logo" width="40" height="40" style="vertical-align: middle; margin-right: 8px;"> Tsarr
+# <img src="./docs/logo.png" alt="Tsarr Logo" width="40" height="40" style="vertical-align: middle; margin-right: 8px;"> Tsarr (ilyamatsuev fork)
 
 *TypeScript-arr (pronounced "Tsar" /tsɑr/ - a Slavic king/emperor)*
 
@@ -10,6 +10,10 @@
 **Type-safe TypeScript SDK for Servarr APIs (Radarr, Sonarr, etc.)**
 
 Tsarr provides type-safe TypeScript clients for all Servarr APIs, generated from their Swagger/OpenAPI specifications. Perfect for building automation tools, scripts, and applications to manage your media servers.
+
+> This version of the project is more up-to-date with the V3 Radarr & Sonarr APIs.
+> 
+> It was created because some of the parameters/methods, which I needed to use for my other projects, were missing here and there.
 
 ## Features
 

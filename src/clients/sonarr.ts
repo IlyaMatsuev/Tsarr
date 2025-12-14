@@ -20,6 +20,7 @@ import type {
   TagResource,
   UiConfigResource,
 } from '../generated/sonarr/types.gen.js';
+import * as RadarrApi from 'tsarr/generated/radarr';
 
 /**
  * Sonarr API client for TV show management
@@ -639,6 +640,48 @@ export class SonarrClient {
    */
   async testAllIndexers() {
     return SonarrApi.postApiV3IndexerTestall();
+  }
+
+  // History APIs
+
+  /**
+   * Get activity history
+   */
+  async getHistory(
+    page?: number,
+    pageSize?: number,
+    sortKey?: string,
+    sortDirection?: string,
+    seriesIds?: number | number[],
+    downloadId?: string,
+  ) {
+    const query: Record<string, any> = {};
+    if (page !== undefined) query.page = page;
+    if (pageSize !== undefined) query.pageSize = pageSize;
+    if (sortKey) query.sortKey = sortKey;
+    if (sortDirection) query.sortDirection = sortDirection;
+    if (seriesIds !== undefined) query.seriesIds = Array.isArray(seriesIds) ? seriesIds : [seriesIds];
+    if (downloadId !== undefined) query.downloadId = downloadId;
+
+    return SonarrApi.getApiV3History(Object.keys(query).length > 0 ? { query } : {});
+  }
+
+  /**
+   * Get history since a specific date
+   */
+  async getHistorySince(date: string) {
+    const query: any = { date };
+    return SonarrApi.getApiV3HistorySince({ query });
+  }
+
+  /**
+   * Get history for a specific series
+   */
+  async getSeriesHistory(seriesId: number, eventType?: any) {
+    const query: any = { seriesId };
+    if (eventType !== undefined) query.eventType = eventType;
+
+    return SonarrApi.getApiV3HistorySeries({ query });
   }
 
   // Import List APIs
