@@ -503,7 +503,8 @@ export class RadarrClient {
     pageSize?: number,
     sortKey?: string,
     sortDirection?: string,
-    includeUnknownMovieItems?: boolean
+    includeUnknownMovieItems?: boolean,
+    movieIds?: number | number[]
   ) {
     const query: Record<string, any> = {};
     if (page !== undefined) query.page = page;
@@ -512,6 +513,7 @@ export class RadarrClient {
     if (sortDirection) query.sortDirection = sortDirection;
     if (includeUnknownMovieItems !== undefined)
       query.includeUnknownMovieItems = includeUnknownMovieItems;
+    if (movieIds !== undefined) query.movieIds = Array.isArray(movieIds) ? movieIds : [movieIds];
 
     return RadarrApi.getApiV3Queue(Object.keys(query).length > 0 ? { query } : {});
   }
@@ -700,7 +702,7 @@ export class RadarrClient {
     sortKey?: string,
     sortDirection?: string,
     movieIds?: number | number[],
-    downloadId?: string,
+    downloadId?: string
   ) {
     const query: Record<string, any> = {};
     if (page !== undefined) query.page = page;

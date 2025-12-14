@@ -653,14 +653,15 @@ export class SonarrClient {
     sortKey?: string,
     sortDirection?: string,
     seriesIds?: number | number[],
-    downloadId?: string,
+    downloadId?: string
   ) {
     const query: Record<string, any> = {};
     if (page !== undefined) query.page = page;
     if (pageSize !== undefined) query.pageSize = pageSize;
     if (sortKey) query.sortKey = sortKey;
     if (sortDirection) query.sortDirection = sortDirection;
-    if (seriesIds !== undefined) query.seriesIds = Array.isArray(seriesIds) ? seriesIds : [seriesIds];
+    if (seriesIds !== undefined)
+      query.seriesIds = Array.isArray(seriesIds) ? seriesIds : [seriesIds];
     if (downloadId !== undefined) query.downloadId = downloadId;
 
     return SonarrApi.getApiV3History(Object.keys(query).length > 0 ? { query } : {});
@@ -798,6 +799,32 @@ export class SonarrClient {
    */
   async testAllNotifications() {
     return SonarrApi.postApiV3NotificationTestall();
+  }
+
+  // Queue APIs
+
+  /**
+   * Get download queue with optional filtering
+   */
+  async getQueue(
+    page?: number,
+    pageSize?: number,
+    sortKey?: string,
+    sortDirection?: string,
+    includeUnknownMovieItems?: boolean,
+    seriesIds?: number | number[],
+  ) {
+    const query: Record<string, any> = {};
+    if (page !== undefined) query.page = page;
+    if (pageSize !== undefined) query.pageSize = pageSize;
+    if (sortKey) query.sortKey = sortKey;
+    if (sortDirection) query.sortDirection = sortDirection;
+    if (includeUnknownMovieItems !== undefined)
+      query.includeUnknownMovieItems = includeUnknownMovieItems;
+    if (seriesIds !== undefined)
+      query.seriesIds = Array.isArray(seriesIds) ? seriesIds : [seriesIds];
+
+    return SonarrApi.getApiV3Queue(Object.keys(query).length > 0 ? { query } : {});
   }
 
   // Command APIs
