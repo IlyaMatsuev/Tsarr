@@ -67,8 +67,8 @@ export class RadarrClient {
   /**
    * Get all movies in the library
    */
-  async getMovies() {
-    return RadarrApi.getApiV3Movie();
+  async getMovies(tmdbId?: number) {
+    return RadarrApi.getApiV3Movie({ query: { tmdbId } });
   }
 
   /**

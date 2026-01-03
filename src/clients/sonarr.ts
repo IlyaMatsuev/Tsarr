@@ -20,7 +20,6 @@ import type {
   TagResource,
   UiConfigResource,
 } from '../generated/sonarr/types.gen.js';
-import * as RadarrApi from 'tsarr/generated/radarr';
 
 /**
  * Sonarr API client for TV show management
@@ -812,7 +811,7 @@ export class SonarrClient {
     sortKey?: string,
     sortDirection?: string,
     includeUnknownMovieItems?: boolean,
-    seriesIds?: number | number[],
+    seriesIds?: number | number[]
   ) {
     const query: Record<string, any> = {};
     if (page !== undefined) query.page = page;
